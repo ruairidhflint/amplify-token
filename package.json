@@ -9,6 +9,7 @@
     "jwt"
   ],
   "author": "Rory Flint",
+  "repository": "https://github.com/ruairidhflint/amplify-token",
   "license": "ISC",
   "dependencies": {
     "@aws-amplify/auth": "^4.6.2",
