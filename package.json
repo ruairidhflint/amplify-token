@@ -1,6 +1,6 @@
 {
   "name": "amplify-token",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple and crude CLI interface to generate AWS Amplify Tokens",
   "keywords": [
     "aws",
