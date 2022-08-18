@@ -7,8 +7,7 @@ import { Auth } from "@aws-amplify/auth";
 import chalk from "chalk";
 
 const program = new Command();
-const packageJson = JSON.parse(readFileSync("./package.json", "utf8"));
-const config = new Configstore(packageJson.name);
+const config = new Configstore("amplify-token");
 
 program
   .command("config")
