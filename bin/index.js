@@ -11,11 +11,16 @@ const config = new Configstore("amplify-token");
 
 program
   .command("config")
-  .description("view config")
-  .option("--set [values...]", "set a config value in the key store")
-  .option("--get [value]", "get a config value in the key store")
-  .option("--clear", "clear config store")
-  .option("--get-all", "view config file")
+  .description(
+    "Set and view the configuration settings for your AWS Amplify Request"
+  )
+  .option(
+    "--set [values...]",
+    "Set a config value. Takes 2 arguments (key and value)"
+  )
+  .option("--get [value]", "Get a config value. Takes 1 arguments (key)")
+  .option("--clear", "Clear config of all values")
+  .option("--get-all", "View all values in config file")
   .action(function (options) {
     if (Object.keys(options).length === 0) {
       return console.log(
@@ -79,8 +84,8 @@ program
   });
 
 program
-  .command("token")
-  .description("view config")
+  .command("fetch")
+  .description("Fetch JWT with email and password")
   .action(function () {
     Auth.configure({
       Auth: config.all,
@@ -104,6 +109,7 @@ program
           return 1;
         }
         try {
+          console.log(chalk.yellow("Attempting to fetch token..."));
           const user = await Auth.signIn(result.email, result.password);
           console.log(
             chalk.blue(`\n\n\n${user.signInUserSession.idToken.jwtToken}\n\n\n`)
