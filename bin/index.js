@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 import Configstore from "configstore";
-import { readFileSync } from "fs";
 import { Command } from "commander";
 import prompt from "prompt";
 import { Auth } from "@aws-amplify/auth";
