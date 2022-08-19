@@ -73,7 +73,7 @@ userPoolWebClientId: 'a1b2c3d4e5f6g7h8i9j0k1l2m3',`
 
 ## License
 
-MIT. See [LICENSE.md](LICENSE) for more details.
+MIT. See [LICENSE.md](LICENSE.md) for more details.
 
 ## Contributing
 
