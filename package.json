@@ -1,6 +1,6 @@
 {
   "name": "amplify-token",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple and crude CLI interface to generate AWS Amplify Tokens",
   "keywords": [
     "aws",
@@ -16,7 +16,7 @@
   },
   "author": "Rory Flint",
   "repository": "https://github.com/ruairidhflint/amplify-token",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@aws-amplify/auth": "^4.6.2",
     "chalk": "^5.0.1",
