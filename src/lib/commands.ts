@@ -52,42 +52,59 @@ function config(options) {
   }
 }
 
-function fetchToken() {
-  Auth.configure({
-    Auth: getStore(),
-  })
-  prompt.start()
-  prompt.get(
-    {
-      properties: {
-        email: {
-          required: true,
-        },
-        password: {
-          required: true,
-          hidden: true,
+async function fetchToken() {
+  const storeValues = getStore()
+
+  if (storeValues.email && storeValues.password) {
+    try {
+      console.log(chalk.yellow(text.FETCHING_TOKEN))
+      const user = await Auth.signIn(storeValues.email, storeValues.password)
+      console.log(
+        chalk.green(
+          `\n\nSuccess! Your JWT is below:\n\n\n${user.signInUserSession.idToken.jwtToken}\n\n\n`
+        )
+      )
+    } catch (error) {
+      console.dir(error)
+      return 1
+    }
+  } else {
+    Auth.configure({
+      Auth: getStore(),
+    })
+    prompt.start()
+    prompt.get(
+      {
+        properties: {
+          email: {
+            required: true,
+          },
+          password: {
+            required: true,
+            hidden: true,
+          },
         },
       },
-    },
-    async function (err, result) {
-      if (err) {
-        console.dir(err)
-        return 1
-      }
-      try {
-        console.log(chalk.yellow(text.FETCHING_TOKEN))
-        const user = await Auth.signIn(result.email, result.password)
-        console.log(
-          chalk.green(
-            `\n\nSuccess! Your JWT is below:\n\n\n${user.signInUserSession.idToken.jwtToken}\n\n\n`
+      async function (err, result) {
+        if (err) {
+          console.dir(err)
+          return 1
+        }
+        try {
+          console.log(chalk.yellow(text.FETCHING_TOKEN))
+          const user = await Auth.signIn(result.email, result.password)
+          console.log(
+            chalk.green(
+              `\n\nSuccess! Your JWT is below:\n\n\n${user.signInUserSession.idToken.jwtToken}\n\n\n`
+            )
           )
-        )
-      } catch (error) {
-        console.dir(error)
-        return 1
+        } catch (error) {
+          console.dir(error)
+          return 1
+        }
       }
-    }
-  )
+    )
+  }
 }
 
 export { config, fetchToken }
